@@ -1,0 +1,60 @@
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+vector<int> get_data(int num_of_nums);
+vector<int> s_sort(vector<int>& input);
+
+int main()
+{
+    int numTestCases;
+
+    cin >> numTestCases;
+
+    for (int i = 0; i < numTestCases; i++)
+    {
+        int n_of_nums;
+        cin >> n_of_nums;
+        vector<int> res = get_data(n_of_nums);
+        res = s_sort(res);
+        int size = res.size();
+        cout << res[size-1] << " " << res[0] << endl;
+    }
+
+    return 0;
+}
+
+vector<int> get_data(int num_of_nums)
+{
+    vector<int> res;
+
+    for (int i = 0; i < num_of_nums; i++)
+    {
+        int a;
+        cin >> a ;
+        res.push_back(a);
+    }
+
+    return res;
+}
+
+vector<int> s_sort(vector<int>& input)
+{
+    const int size = input.size();
+
+    for (int i = 0; i <size;i++)
+    {
+        for (int j = i+1; j < size; j++)
+        {
+            if (input[i] > input[j])
+            {
+                int tmp = input[j];
+                input[j] = input[i];
+                input[i] = tmp;
+            }
+        }
+    }
+
+    return input;
+}
